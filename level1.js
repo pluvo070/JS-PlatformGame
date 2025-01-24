@@ -43,7 +43,7 @@ function getPlayers(){
     index = playerObject.gid; //80
     // console.log(player1img); 
     let x = playerObject.x;
-    let y = playerObject.y;
+    let y = playerObject.y - tileSize;//直接获得是左下角?
     player1 = new Player(x,y,speed,hp,index);
 }
 

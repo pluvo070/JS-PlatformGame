@@ -17,8 +17,8 @@ function getTilePosition(i) {
 function getDrawPosition(i, levelIndex) {
     let row = Math.floor(i / levelWidth[levelIndex]);  // 计算当前瓦片在地图中的行
     let col = i % levelWidth[levelIndex];  // 计算当前瓦片在地图中的列
-    let xCoordinate = col * tileSize;  // 计算绘制到画布上的 x 坐标
-    let yCoordinate = row * tileSize;  // 计算绘制到画布上的 y 坐标
+    let xCoordinate = col * (tileSize);  // 计算绘制到画布上的 x 坐标
+    let yCoordinate = row * (tileSize);  // 计算绘制到画布上的 y 坐标
     return { x: xCoordinate, y: yCoordinate };
 }
 

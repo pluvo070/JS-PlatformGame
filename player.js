@@ -44,6 +44,7 @@ class Player {
             Math.floor((this.imgIndex - 1) / 30) * (tileSize + tilemargin) + 2, 
             tileSize, tileSize      // 在png中要裁剪的宽度和高度
           );*/
+        
         image(
         assets.icon,  // 源图像
         this.x, this.y,   // 在画布上绘制的左上角坐标

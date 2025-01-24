@@ -8,6 +8,7 @@ var messages = []; // 用于存储所有的提示消息(固定时间消失)
 
 function setup() {
   createCanvas(600, 630);
+  textFont(assets.font1);
 }
 
 function draw() {
@@ -37,18 +38,18 @@ function draw() {
 function drawStartScreen() {
   background(100, 150, 200);
   textAlign(CENTER, CENTER);
-  textSize(20);
+  textSize(32);
   fill(255);
-  text("按 ENTER 进入关卡选择", width/2, height/2);
+  text("Press ENTER to start", width/2, height/2);
 }
 
 // 关卡选择界面
 function drawLevelSelectScreen() {
   background(180, 120, 100);
   textAlign(CENTER, CENTER);
-  textSize(20);
+  textSize(32);
   fill(255);
-  text("使用 ← → 选择关卡, 空格键进入", width/2, 100);
+  text("Use ← → to chose, Press SPACE to begin", width/2, 100);
 
   for (let i = 0; i < levels.length; i++) {
     let size = 60;
@@ -63,6 +64,7 @@ function drawLevelSelectScreen() {
     
     rect(x, y, size, size, 10); // 画按钮
     fill(0);
+    textSize(26);
     text(levels[i], x + size/2, y + size/2); // 画按钮上的文字
   }
 }
@@ -72,7 +74,7 @@ function drawGameScreen() {
   background(0, 0, 0);
   fill(255);
   textSize(32);
-  text(`当前关卡: ${selectedLevel}`, width/2, height/2);
+  text(`Level: ${selectedLevel}`, width/2, height/2);
 
   // 模拟死亡情况
   if (frameCount % 300 === 0) { // 5 秒后进入死亡界面
@@ -86,7 +88,7 @@ function drawGameOverScreen() {
   textAlign(CENTER, CENTER);
   textSize(32);
   fill(255);
-  text("游戏结束! 按 R 重新开始", width / 2, height / 2);
+  text("GameOver! Press R to restart", width / 2, height / 2);
 }
 
 // 监听键盘输入来切换场景
