@@ -27,9 +27,8 @@ function draw() {
   //测试
   
   coll1.show();
-  player1.update();
-  player1.show();
-
+  player[1].update();
+  player[1].show();
 }
 
 // 开始界面

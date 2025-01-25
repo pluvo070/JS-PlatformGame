@@ -4,12 +4,13 @@
 class Player {
 
     // 构造函数
-    constructor(x, y, speed, hp, imgIndex) {
+    constructor(x, y, speed, hp, imgIndex, levelIndex) {
         this.x = x;
         this.y = y;
         this.speed = speed;
         this.maxhp = hp; // 最大血量
         this.hp = hp; // 当前血量, 初始值为最大血量
+        this.levelIndex = levelIndex;
         this.imgIndex = imgIndex; // 图标起始坐标
         this.isJumping = false;  // 用于判断是否在跳跃中
         this.jumpHeight = 0;     // 跳跃的高度
