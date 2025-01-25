@@ -21,12 +21,13 @@ function draw() {
     drawGameScreen();
   } else if (gameState === "gameOver") {
     drawGameOverScreen();
-  }
+  } 
 
 
   //测试
   
   coll1.show();
+  player1.update();
   player1.show();
 
 
@@ -77,7 +78,7 @@ function drawGameScreen() {
   text(`Level: ${selectedLevel}`, width/2, height/2);
 
   // 模拟死亡情况
-  if (frameCount % 300 === 0) { // 5 秒后进入死亡界面
+  if (frameCount % 600 === 0) { // 几秒后进入死亡界面
     gameState = "gameOver";
   }
 }
@@ -93,6 +94,7 @@ function drawGameOverScreen() {
 
 // 监听键盘输入来切换场景
 function keyPressed() {
+   
   if (gameState === "start" && keyCode === ENTER) {
     gameState = "levelSelect";
   } else if (gameState === "levelSelect") {
@@ -106,4 +108,17 @@ function keyPressed() {
   } else if (gameState === "gameOver" && key === 'r') {
     gameState = "start";
   }
+  else if(gameState ==="playing"){
+    keys[key] = true;
+  }
+
+
+
+
+}
+
+
+// 松开键盘后停止人物移动
+function keyReleased() {
+  keys[key] = false; 
 }
