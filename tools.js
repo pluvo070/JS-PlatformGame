@@ -67,3 +67,14 @@ function flashText(textContent, x, y, speed, r, g, b,
     stroke(r1, g1, b1, alphaValue);
     text(textContent, x, y); // 绘制文字
 }
+
+// 画面转化的过渡效果
+let transitioning = true; // 标记是否正在画面过渡
+let imgAlpha = 0;   // 图片透明度
+let textAlpha = 0;  // 文字的透明度
+// 界面转换标记函数(每次界面转换都调用这个函数来重置控制变量)
+function transition() {
+  imgAlpha = 0;
+  textAlpha = 0;
+  transitioning = true;
+}
