@@ -7,11 +7,12 @@ player[0] = 0;
 let coll1;
 let others1;
 
-// 获取敌人对象
+// 获取对象数组
 let enemies1 = []; 
-
-
 let traps1 = []; 
+let diamonds1 = [];
+let flag1;
+let boxes1 = [];
 
 // 解析 JSON 地图
 function ParseJSON(jsonData) {
@@ -26,6 +27,7 @@ function ParseJSON(jsonData) {
     getOthers();
     getEnemies();
     getTraps();
+    getInteract();
 }
 
 // 使用 $.getJSON 加载 JSON 并赋值给 gameData
@@ -37,7 +39,7 @@ function getPlayers(){
     //console.log(playerLayer); //
     // 从玩家对象层获取玩家对象
     let playerObject = playerLayer.objects.find(player => player.name === "player1");
-    console.log("玩家对象:",playerObject); //
+    //console.log("玩家对象:",playerObject); //
     // 获取玩家对象的自定义属性:  speed 和 HP
     let speed = playerObject.properties.find(properties => properties.name === "speed").value;
     let hp = playerObject.properties.find(properties => properties.name === "hp").value;
@@ -54,21 +56,21 @@ function getPlayers(){
 // 获取碰撞层数据
 function getColl(){
     let collisionLayer = Level1Data.layers.find(layer => layer.name === "coll");
-    console.log("碰撞层:", collisionLayer);
+    //console.log("碰撞层:", collisionLayer);
     coll1 = new Coll(collisionLayer.data, 1);
 }
 
 // 获取碰撞层others数据(不设计碰撞当做背景)
 function getOthers(){
     let othersLayer = Level1Data.layers.find(layer => layer.name === "others");
-    console.log("others层:", othersLayer);
+    //console.log("others层:", othersLayer);
     others1 = new Others(othersLayer.data, 1);
 }
 
 // 获取敌人层数据
 function getEnemies(){
     let enemiesLayer = Level1Data.layers.find(layer => layer.name === "enemies");
-    console.log("敌人层:", enemiesLayer);
+    //console.log("敌人层:", enemiesLayer);
     // 获取每个敌人,创建为单个敌人类的对象,存储到数组enemies1里
     for(let i = 0; i < enemiesLayer.objects.length; i++){
         //console.log("敌人层对象数量:", enemiesLayer.objects.length);
@@ -96,6 +98,35 @@ function getTraps(){
     }
 }
 
+// 获取交互层数据
+function getInteract(){
+    let Layer = Level1Data.layers.find(layer => layer.name === "interact");
+    console.log("交互层:", Layer);
+    let diamondNum = 0;
+    let boxNum = 0;
+    for(let i = 0; i < Layer.objects.length; i++){
+        let interType = Layer.objects[i].type;
+        if(interType === "diamond"){
+            let x = Layer.objects[i].x;
+            let y = Layer.objects[i].y - tileSize;
+            let imgIndex = Layer.objects[i].gid;
+            diamonds1[diamondNum++] = new OneDiamond(x,y,imgIndex,1);
+        }
+        else if(interType === "box"){
+            let x = Layer.objects[i].x;
+            let y = Layer.objects[i].y - tileSize;
+            let imgIndex = Layer.objects[i].gid;
+            boxes1[boxNum++] = new OneBox(x,y,imgIndex,1);
+        }
+        else if(interType === "flag"){
+            let x = Layer.objects[i].x;
+            let y = Layer.objects[i].y - tileSize;
+            let imgIndex = Layer.objects[i].gid;
+            flag1 = new OneFlag(x,y,imgIndex,1);
+        }
+
+    }
+}
 
 
 

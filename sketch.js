@@ -109,6 +109,13 @@ function drawGameScreen() {
   for(let i =0; i<traps1.length; i++){
     traps1[i].show();
   }
+  for(let i =0; i<diamonds1.length; i++){
+    diamonds1[i].show();
+  }
+  for(let i =0; i<boxes1.length; i++){
+    boxes1[i].show();
+  }
+  flag1.show();
   player[selectedLevel+1].update();
   player[selectedLevel+1].show();
   
