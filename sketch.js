@@ -37,7 +37,9 @@ function drawStartScreen() {
   fill(255);
   strokeWeight(3);
   stroke(0);
-  text("Press ENTER to start", width/2, height/2);
+  //text("Press ENTER to start", width/2, height/2);
+  flashText("Press ENTER to start", width/2, height/2, 
+              alphaSpeed, 255, 255, 255, 0, 0, 0);
 }
 
 // 关卡选择界面
@@ -142,3 +144,4 @@ function keyPressed() {
 function keyReleased() {
   keys[key] = false; 
 }
+

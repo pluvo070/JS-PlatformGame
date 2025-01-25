@@ -34,4 +34,35 @@ function getDrawPosition(i, levelIndex) {
     return { x: xCoordinate, y: yCoordinate };
 }
 
+// 文字透明度闪烁效果函数
+let alphaValue = 0;  // 文字的透明度
+let alphaSpeed = 5;  // 透明度变化的速度
+let increasing = true; // 控制透明度是否增加
+let holdTime = 30;  // 停留在最大透明度时的帧数
+let holdCounter = 0;  // 计时器
 
+function flashText(textContent, x, y, speed, r, g, b,
+                     r1=255, g1=255, b1=255) {
+    // rgb是文字颜色, r1g1b1是边框颜色, 默认白色
+    if (increasing) {
+        alphaValue += speed; // 透明度增加
+        if (alphaValue >= 255) {
+            alphaValue = 255; // 达到最大透明度
+            increasing = false; // 改为减少透明度
+            holdCounter = holdTime; // 开始计时停留
+        }
+    } else {
+        if (holdCounter > 0) {
+            holdCounter--; // 保持最大透明度一段时间
+        } else {
+            alphaValue -= speed; // 透明度减少
+            if (alphaValue <= 0) {
+                alphaValue = 0; // 达到最小透明度
+                increasing = true; // 改为增加透明度
+            }
+        }
+    }
+    fill(r, g, b, alphaValue); // 设置带透明度的颜色
+    stroke(r1, g1, b1, alphaValue);
+    text(textContent, x, y); // 绘制文字
+}
