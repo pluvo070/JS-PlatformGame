@@ -105,6 +105,9 @@ function drawGameScreen() {
   // 绘制所有图层
   coll1.show();
   others1.show();
+  for(let i =0; i<enemies1.length; i++){
+    enemies1[i].show();
+  }
   player[selectedLevel+1].update();
   player[selectedLevel+1].show();
 
@@ -126,6 +129,7 @@ function drawGameScreen() {
   }
   rectMode(CORNER);
 
+  // 页面常驻消息
   fill(255,159,237,textAlpha);
   textSize(15);
   strokeWeight(2);
@@ -134,6 +138,9 @@ function drawGameScreen() {
   text(`Level: ${selectedLevel}`, 30, 30);
   text(`HP: ${player[selectedLevel+1].hp}`, 30, 60);
 }
+
+
+
 
 // 死亡界面
 function drawGameOverScreen() {

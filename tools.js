@@ -13,8 +13,7 @@ let offsetX = 0;  // 水平偏移
 let offsetY = 0;  // 垂直偏移
 let cameraSpeed = 5; // 镜头的移动速度，控制视窗跟随的灵敏度
 
-let scaleFactor = 1; // 等比放大因子
-let keySpace = false; // 记录是否按下空格键
+//let keySpace = false; // 记录是否按下空格键
 
 
 // 根据索引(从1开始,30一行)计算瓦片在瓦片素材表png里的坐标{x,y}
@@ -30,8 +29,8 @@ function getTilePosition(i) {
 function getDrawPosition(i, levelIndex) {
     let row = Math.floor(i / levelWidth[levelIndex]);  // 计算当前瓦片在地图中的行
     let col = i % levelWidth[levelIndex];  // 计算当前瓦片在地图中的列
-    let xCoordinate = col * tileSize*scaleFactor;  // 计算绘制到画布上的 x 坐标
-    let yCoordinate = row * tileSize*scaleFactor;  // 计算绘制到画布上的 y 坐标
+    let xCoordinate = col * tileSize;  // 计算绘制到画布上的 x 坐标
+    let yCoordinate = row * tileSize;  // 计算绘制到画布上的 y 坐标
     return { x: xCoordinate, y: yCoordinate };
 }
 

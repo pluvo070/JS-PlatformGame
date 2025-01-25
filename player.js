@@ -43,9 +43,9 @@ class Player {
 
         // 检查玩家四条边界是否碰撞
         let left   = this.isColliding(newX, newY );  // 左上角（稍往下，避免浮空检测）
-        let right  = this.isColliding(newX + tileSize * scaleFactor, newY );  // 右上角
+        let right  = this.isColliding(newX + tileSize, newY );  // 右上角
         let top    = this.isColliding(newX , newY);  // 上方（稍往右）
-        let bottom = this.isColliding(newX , newY + tileSize * scaleFactor);  // 下方
+        let bottom = this.isColliding(newX , newY + tileSize);  // 下方
 
         // 只允许安全方向移动
         // 处理水平碰撞
@@ -72,18 +72,18 @@ class Player {
         let coordinate = getTilePosition(this.imgIndex);
         // 绘制玩家图像到画面上
         image(
-        assets.icon,  // 源图像
-        this.x-offsetX, this.y-offsetY,   // 在画布上绘制的左上角坐标
-        tileSize*scaleFactor, tileSize*scaleFactor,     // 在画布上绘制的宽度和高度
-        coordinate.x, coordinate.y,  // 在png里的横坐标和纵坐标
-        tileSize, tileSize      // 在png中要裁剪的宽度和高度
+            assets.icon,  // 源图像
+            this.x-offsetX, this.y-offsetY,   // 在画布上绘制的左上角坐标
+            tileSize, tileSize,     // 在画布上绘制的宽度和高度
+            coordinate.x, coordinate.y,  // 在png里的横坐标和纵坐标
+            tileSize, tileSize      // 在png中要裁剪的宽度和高度
         );
     }
 
     // 计算给定坐标是否在碰撞层
     isColliding(x, y) {
-        let col = Math.floor(x / (tileSize * scaleFactor));
-        let row = Math.floor(y / (tileSize * scaleFactor));
+        let col = Math.floor(x / tileSize);
+        let row = Math.floor(y / tileSize);
         let tileIndex = row * levelWidth[this.levelIndex] + col;
 
         // 碰撞检测：如果这个格子是墙体（非 0），返回 true

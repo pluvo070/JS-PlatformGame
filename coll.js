@@ -8,8 +8,8 @@ class Coll{
     }
     // 将整个碰撞层绘制到界面
     show() {
-        let offsetX = (player[this.levelIndex].x * scaleFactor - windowWidth / 2);
-        let offsetY = (player[this.levelIndex].y * scaleFactor - windowHeight / 2);
+        let offsetX = (player[this.levelIndex].x  - windowWidth / 2);
+        let offsetY = (player[this.levelIndex].y  - windowHeight / 2);
         for(let i=0; i<this.data.length; i++){
             let tileId = this.data[i];  // 当前瓦片的在瓦片表中的索引
             if (tileId === 0) {
@@ -20,7 +20,7 @@ class Coll{
             image(
                 assets.icon,  
                 coord2.x-offsetX, coord2.y-offsetY,  
-                tileSize*scaleFactor, tileSize*scaleFactor,    
+                tileSize, tileSize,    
                 coord1.x, coord1.y,  
                 tileSize, tileSize      
             );

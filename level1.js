@@ -8,7 +8,7 @@ let coll1;
 let others1;
 
 // 获取敌人对象
-let enemies = []; 
+let enemies1 = []; 
 
 // 解析 JSON 地图
 function ParseJSON(jsonData) {
@@ -65,6 +65,18 @@ function getOthers(){
 function getEnemies(){
     let enemiesLayer = Level1Data.layers.find(layer => layer.name === "enemies");
     console.log("敌人层:", enemiesLayer);
+    // 获取每个敌人,创建为单个敌人类的对象,存储到数组enemies1里
+    for(let i = 0; i < enemiesLayer.objects.length; i++){
+        //console.log("敌人层对象数量:", enemiesLayer.objects.length);
+        //console.log("enemiesLayer.objects[i]:", enemiesLayer.objects[i]);
+        //console.log("enemiesLayer.objects[i].x:", enemiesLayer.objects[i].x);
+        let x = enemiesLayer.objects[i].x;
+        let y = enemiesLayer.objects[i].y - tileSize;
+        let imgIndex = enemiesLayer.objects[i].gid;
+        let speed = enemiesLayer.objects[i].properties.speed;
+        let hp = enemiesLayer.objects[i].properties.hp;
+        enemies1[i] = new OneEnemy(x,y,speed,hp,imgIndex,1);
+    }
 }
 
 
