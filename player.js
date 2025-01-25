@@ -1,3 +1,6 @@
+
+
+
 class Player {
 
     // 构造函数
@@ -35,10 +38,15 @@ class Player {
                 this.isJumping = false;  // 停止跳跃
             }
         }
-*/
+*/        
+        // 计算偏移量：让玩家始终保持在屏幕中心
+        offsetX = this.x - width / 2;
+        offsetY = this.y - height / 2;
+
         // 将玩家坐标限制在画面以内
+        /*
         this.x = constrain(this.x, 0, width);
-        this.y = constrain(this.y, 0, height);
+        this.y = constrain(this.y, 0, height);*/
 
     }
   
@@ -58,8 +66,8 @@ class Player {
         
         image(
         assets.icon,  // 源图像
-        this.x, this.y,   // 在画布上绘制的左上角坐标
-        tileSize, tileSize,     // 在画布上绘制的宽度和高度
+        this.x-offsetX, this.y-offsetY,   // 在画布上绘制的左上角坐标
+        tileSize*scaleFactor, tileSize*scaleFactor,     // 在画布上绘制的宽度和高度
         coordinate.x, coordinate.y,  // 在png里的横坐标和纵坐标
         tileSize, tileSize      // 在png中要裁剪的宽度和高度
         );

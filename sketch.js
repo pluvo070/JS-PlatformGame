@@ -7,7 +7,7 @@ var messages = []; // 用于存储所有的提示消息(固定时间消失)
 
 
 function setup() {
-  createCanvas(600, 630);
+  createCanvas(600, 400);
   textFont(assets.font1);
 }
 
@@ -29,9 +29,6 @@ function draw() {
   coll1.show();
   player1.update();
   player1.show();
-
-
-
 
 }
 
@@ -94,7 +91,6 @@ function drawGameOverScreen() {
 
 // 监听键盘输入来切换场景
 function keyPressed() {
-   
   if (gameState === "start" && keyCode === ENTER) {
     gameState = "levelSelect";
   } else if (gameState === "levelSelect") {
@@ -109,12 +105,8 @@ function keyPressed() {
     gameState = "start";
   }
   else if(gameState ==="playing"){
-    keys[key] = true;
+    keys[key] = true;//控制人物移动和交互
   }
-
-
-
-
 }
 
 
