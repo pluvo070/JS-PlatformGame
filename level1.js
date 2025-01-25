@@ -5,6 +5,7 @@ let player = []; // 玩家类的对象,用于存储json中获得的数据
 player[0] = 0;
 
 let coll1;
+let others1;
 
 // 获取敌人对象
 let enemies = []; 
@@ -19,11 +20,12 @@ function ParseJSON(jsonData) {
        不能保证json文件已经解析完成, 会报错undifined  */
     getPlayers();
     getColl();
+    getOthers();
     getEnemies();
 }
 
 // 使用 $.getJSON 加载 JSON 并赋值给 gameData
-$.getJSON('assets/test02.json', ParseJSON);
+$.getJSON('assets/test03.json', ParseJSON);
 
 // 获取玩家数据并存储到玩家类的对象
 function getPlayers(){
@@ -52,12 +54,17 @@ function getColl(){
     coll1 = new Coll(collisionLayer.data, 1);
 }
 
-// 获取碰撞层数据
+// 获取碰撞层others数据(不设计碰撞当做背景)
+function getOthers(){
+    let othersLayer = Level1Data.layers.find(layer => layer.name === "others");
+    console.log("others层:", othersLayer);
+    others1 = new Others(othersLayer.data, 1);
+}
+
+// 获取敌人层数据
 function getEnemies(){
     let enemiesLayer = Level1Data.layers.find(layer => layer.name === "enemies");
     console.log("敌人层:", enemiesLayer);
-
-
 }
 
 

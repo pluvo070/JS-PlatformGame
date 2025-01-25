@@ -14,6 +14,15 @@
     <!-- 引入jquery -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
+    <!-- 放大画面 -->
+    <style>
+      canvas {
+        transform: scale(1.5); /* 放大 2 倍 */
+        transform-origin: top left; /* 让画布从左上角放大 */
+      }
+    </style>
+    
+
   </head>
 
   <body>
@@ -24,6 +33,7 @@
     <!--加载类的定义-->
     <script src="coll.js"></script>
     <script src="player.js"></script>
+    <script src="others.js"></script>
     
     <script src="oneEnemy.js"></script>
     <script src="enemies.js"></script>

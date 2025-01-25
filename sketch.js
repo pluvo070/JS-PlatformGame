@@ -72,20 +72,16 @@ function drawLevelSelectScreen() {
 
 // 游戏界面
 function drawGameScreen() {
-  background(0, 0, 0);
-  fill(255);
-  textSize(32);
-  strokeWeight(2);
-  stroke(0);
-  text(`Level: ${selectedLevel}`, width/2, height/2);
-
+  image(assets.bg, 0, 0, windowWidth, windowHeight*5/4);
+/*
   // 模拟死亡情况
   if (frameCount % 600 === 0) { // 几秒后进入死亡界面
     gameState = "gameOver";
   }
-
+*/
   // 绘制所有图层
   coll1.show();
+  others1.show();
   player[1].update();
   player[1].show();
 
@@ -107,6 +103,13 @@ function drawGameScreen() {
   }
   rectMode(CORNER);
 
+  fill(255,159,237);
+  textSize(15);
+  strokeWeight(2);
+  stroke(255);
+  textAlign(LEFT,TOP);
+  text(`Level: ${selectedLevel}`, 30, 30);
+  text(`HP: ${player[selectedLevel+1].hp}`, 30, 60);
 }
 
 // 死亡界面
@@ -137,6 +140,7 @@ function keyPressed() {
   }
   else if(gameState ==="playing"){
     keys[key] = true;//控制人物移动和交互
+    console.log(key + " " + keyCode);//测试
   }
 }
 

@@ -1,6 +1,6 @@
 // 工具类
 
-let windowHeight = 400; // 记录窗口大小
+let windowHeight = 350; // 记录窗口大小
 let windowWidth = 500;
 
 
@@ -14,6 +14,7 @@ let offsetY = 0;  // 垂直偏移
 let cameraSpeed = 5; // 镜头的移动速度，控制视窗跟随的灵敏度
 
 let scaleFactor = 1; // 等比放大因子
+let keySpace = false; // 记录是否按下空格键
 
 
 // 根据索引(从1开始,30一行)计算瓦片在瓦片素材表png里的坐标{x,y}
