@@ -19,9 +19,16 @@ class Player {
     }
 
     // 移动 + 限制玩家的位置
-    update() {
+    update() {/*
         if (keys['ArrowLeft']) this.x -= this.speed;
         if (keys['ArrowRight']) this.x += this.speed;
+*/
+        let newX = this.x;
+        let newY = this.y;
+        if (keys['ArrowLeft']) newX -= this.speed;
+        if (keys['ArrowRight']) newX += this.speed;
+        /*if (keys['ArrowUP']) newY -= this.speed;
+        if (keys['ArrowDown']) newY += this.speed;*/
 
         /*
         // 按空格键触发跳跃
@@ -44,12 +51,22 @@ class Player {
         offsetX = this.x - windowWidth / 2;
         offsetY = this.y - windowHeight / 2;
 
-        // 将玩家坐标限制在画面以内
-        /*
-        this.x = constrain(this.x, 0, width);
-        this.y = constrain(this.y, 0, height);*/
+        // 检查玩家四条边界是否碰撞
+        let left   = this.isColliding(newX, newY + 5);  // 左上角（稍往下，避免浮空检测）
+        let right  = this.isColliding(newX + tileSize * scaleFactor, newY + 5);  // 右上角
+        let top    = this.isColliding(newX + 5, newY);  // 上方（稍往右）
+        let bottom = this.isColliding(newX + 5, newY + tileSize * scaleFactor);  // 下方
 
-    }
+        // 只允许安全方向移动
+        if (!left && !right) {
+            this.x = newX;
+        }
+        if (!top && !bottom) {
+            this.y = newY;
+        }
+   }
+
+    
   
     // 加载玩家图片到界面
     show() {
@@ -107,6 +124,17 @@ class Player {
     }
 
 */
+
+
+    // 计算给定坐标是否在碰撞层
+    isColliding(x, y) {
+        let col = Math.floor(x / (tileSize * scaleFactor));
+        let row = Math.floor(y / (tileSize * scaleFactor));
+        let tileIndex = row * levelWidth[this.levelIndex] + col;
+
+        // 碰撞检测：如果这个格子是墙体（非 0），返回 true
+        return coll1.data[tileIndex] !== 0;
+    }
 
 }
   
