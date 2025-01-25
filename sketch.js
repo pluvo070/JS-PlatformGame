@@ -53,17 +53,15 @@ function drawStartScreen() {
   noTint();
   textAlign(CENTER, CENTER);
   textSize(32);
-  fill(255,255,255, textAlpha);
   strokeWeight(3);
-  stroke(0);
   //text("Press ENTER to start", width/2, height/2);
   flashText("Press ENTER to start", width/2, height/2, 
-              alphaSpeed, 255, 255, 255, 0, 0, 0);
+              alphaSpeed, 255, 255, 255, 255,159,237);
 }
 
 // 关卡选择界面
 function drawLevelSelectScreen() {
-  background(180, 120, 100);
+  background(137,172,206);
   tint(255, imgAlpha);// 改变图片的透明度
   //...这里插入关卡选择背景图片
   noTint();
@@ -110,6 +108,7 @@ function drawGameScreen() {
   }
   player[selectedLevel+1].update();
   player[selectedLevel+1].show();
+  
 
   // 首次开始游戏显示操作提示
   if(firstGameStarted){
