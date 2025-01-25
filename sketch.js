@@ -5,6 +5,7 @@ let selectedLevel = 0;  // 选中的关卡索引
 let keys = {}; // 空对象用于存储当前按键信息,控制人物持续移动
 var messages = []; // 用于存储所有的提示消息(固定时间消失)
 
+let firstGameStarted = true; // 游戏首次开始标志,用于显示游戏提示
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -23,20 +24,19 @@ function draw() {
     drawGameOverScreen();
   } 
 
-
   //测试
-  
-  coll1.show();
-  player[1].update();
-  player[1].show();
+
 }
 
 // 开始界面
 function drawStartScreen() {
   background(100, 150, 200);
+  image(assets.startPage,0,0,width*1.5,height);
   textAlign(CENTER, CENTER);
   textSize(32);
   fill(255);
+  strokeWeight(3);
+  stroke(0);
   text("Press ENTER to start", width/2, height/2);
 }
 
@@ -44,24 +44,26 @@ function drawStartScreen() {
 function drawLevelSelectScreen() {
   background(180, 120, 100);
   textAlign(CENTER, CENTER);
-  textSize(32);
-  fill(255);
-  text("Use ← → to chose, Press SPACE to begin", width/2, 100);
+  textSize(28);
+  fill(0);
+  strokeWeight(3);
+  stroke(255);
+  text("Use LEFT/RIGHT to chose\nPress SPACE to begin", width/2, 100);
 
   for (let i = 0; i < levels.length; i++) {
     let size = 60;
     let x = width/2 - (levels.length*size)/2 + i*size; // 计算按钮位置
     let y = height/2;
-    
     if (i === selectedLevel) {
       fill(255, 255, 0); // 选中时候的颜色
     } else {
       fill(200);
     }
-    
     rect(x, y, size, size, 10); // 画按钮
     fill(0);
     textSize(26);
+    strokeWeight(3);
+    stroke(255);
     text(levels[i], x + size/2, y + size/2); // 画按钮上的文字
   }
 }
@@ -71,12 +73,38 @@ function drawGameScreen() {
   background(0, 0, 0);
   fill(255);
   textSize(32);
+  strokeWeight(2);
+  stroke(0);
   text(`Level: ${selectedLevel}`, width/2, height/2);
 
   // 模拟死亡情况
   if (frameCount % 600 === 0) { // 几秒后进入死亡界面
     gameState = "gameOver";
   }
+
+  // 绘制所有图层
+  coll1.show();
+  player[1].update();
+  player[1].show();
+
+  // 首次开始游戏显示操作提示
+  if(firstGameStarted){
+    //textAlign(CENTER, CENTER); 
+    textSize(20);
+    let message1 = "Press LEFT/RIGHT ARROW to move\nPress SPACE to jump";
+    messages.push(new Message(message1,width/2,4*height/5,3000,20,200,200,255,159,237));
+    firstGameStarted = false;
+  }
+  // 显示所有提示消息
+  for (let i = 0; i < messages.length; i++) {
+    messages[i].show();
+  }
+  // 删除已过期的第一条消息
+  if (messages.length > 0 && messages[0].isExpired()) {
+    messages.shift();
+  }
+  rectMode(CORNER);
+
 }
 
 // 死亡界面
@@ -85,6 +113,8 @@ function drawGameOverScreen() {
   textAlign(CENTER, CENTER);
   textSize(32);
   fill(255);
+  strokeWeight(2);
+  stroke(0);
   text("GameOver! Press R to restart", width / 2, height / 2);
 }
 
@@ -107,7 +137,6 @@ function keyPressed() {
     keys[key] = true;//控制人物移动和交互
   }
 }
-
 
 // 松开键盘后停止人物移动
 function keyReleased() {

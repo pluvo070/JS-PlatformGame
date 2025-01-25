@@ -15,9 +15,11 @@ function ParseJSON(jsonData) {
     console.log("JSON 解析后:", Level1Data);
     levelHeight[1] = 30;
     levelWidth[1] = 100; 
-
+    /* 这些是对json文件数据的操作, 必须放在这个函数里, 因为若放在外面就是异步操作
+       不能保证json文件已经解析完成, 会报错undifined  */
     getPlayers();
     getColl();
+    getEnemies();
 }
 
 // 使用 $.getJSON 加载 JSON 并赋值给 gameData
@@ -48,10 +50,15 @@ function getColl(){
     let collisionLayer = Level1Data.layers.find(layer => layer.name === "coll");
     console.log("碰撞层:", collisionLayer);
     coll1 = new Coll(collisionLayer.data, 1);
-    console.log("碰撞层coll1:",coll1);
 }
 
+// 获取碰撞层数据
+function getEnemies(){
+    let enemiesLayer = Level1Data.layers.find(layer => layer.name === "enemies");
+    console.log("敌人层:", enemiesLayer);
 
+
+}
 
 
 
