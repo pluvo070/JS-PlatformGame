@@ -7,7 +7,7 @@ var messages = []; // 用于存储所有的提示消息(固定时间消失)
 
 
 function setup() {
-  createCanvas(600, 400);
+  createCanvas(windowWidth, windowHeight);
   textFont(assets.font1);
 }
 

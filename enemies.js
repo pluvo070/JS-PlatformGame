@@ -9,7 +9,7 @@ class Enemies{
         this.levelIndex = levelIndex;
     }
 
-    // 将整个碰撞层绘制到界面
+    // 将所有敌人绘制到界面
     show() {
         let offsetX = (player[this.levelIndex].x * scaleFactor - width / 2);
         let offsetY = (player[this.levelIndex].y * scaleFactor - height / 2);

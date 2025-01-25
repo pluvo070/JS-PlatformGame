@@ -41,8 +41,8 @@ class Player {
         }
 */        
         // 计算偏移量：让玩家始终保持在屏幕中心
-        offsetX = this.x - width / 2;
-        offsetY = this.y - height / 2;
+        offsetX = this.x - windowWidth / 2;
+        offsetY = this.y - windowHeight / 2;
 
         // 将玩家坐标限制在画面以内
         /*
@@ -53,7 +53,7 @@ class Player {
   
     // 加载玩家图片到界面
     show() {
-        //text("You", this.x + 5, this.y - 10);
+        //text(`${this.x},${this.y}`,this.x-offsetX,this.y-offsetY);
         let coordinate = getTilePosition(this.imgIndex);
         // 绘制玩家图像到画面上
         /*image(

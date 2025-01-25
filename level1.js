@@ -3,6 +3,7 @@ let Level1Data = {};  // 用于存储解析后的JSON数据,它是一个对象
 
 let player = []; // 玩家类的对象,用于存储json中获得的数据
 player[0] = 0;
+
 let coll1;
 
 // 获取敌人对象
@@ -12,8 +13,8 @@ let enemies = [];
 function ParseJSON(jsonData) {
     Level1Data = jsonData;  // 将解析后的 JSON 赋值给 gameData
     console.log("JSON 解析后:", Level1Data);
-    levelHeight[1] = 30; //30*21
-    levelWidth[1] = 100; //100*21
+    levelHeight[1] = 30;
+    levelWidth[1] = 100; 
 
     getPlayers();
     getColl();

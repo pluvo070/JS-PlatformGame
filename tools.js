@@ -1,7 +1,10 @@
 // 工具类
 
+let windowHeight = 400; // 记录窗口大小
+let windowWidth = 500;
 
-let levelHeight = []; // 记录每个关卡的宽高(像素)
+
+let levelHeight = []; // 记录每个关卡的宽高(几个瓦片)
 let levelWidth = [];
 let tileSize = 21;
 let tilemargin = 2;

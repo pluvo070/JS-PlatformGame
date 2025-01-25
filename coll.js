@@ -8,8 +8,8 @@ class Coll{
     }
     // 将整个碰撞层绘制到界面
     show() {
-        let offsetX = (player[this.levelIndex].x * scaleFactor - width / 2);
-        let offsetY = (player[this.levelIndex].y * scaleFactor - height / 2);
+        let offsetX = (player[this.levelIndex].x * scaleFactor - windowWidth / 2);
+        let offsetY = (player[this.levelIndex].y * scaleFactor - windowHeight / 2);
         for(let i=0; i<this.data.length; i++){
             let tileId = this.data[i];  // 当前瓦片的在瓦片表中的索引
             if (tileId === 0) {
