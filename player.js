@@ -30,6 +30,7 @@ class Player {
         if (keys[" "] && this.onGround) {
             this.velocityY = this.jumpStrength; // 赋予向上的初速度
             this.onGround = false; // 进入空中
+            assets.jumpSound.play();
         }
 
         // 施加重力

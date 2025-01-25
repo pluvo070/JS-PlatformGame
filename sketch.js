@@ -10,6 +10,8 @@ let firstGameStarted = true; // 游戏首次开始标志,用于显示游戏提�
 function setup() {
   createCanvas(windowWidth, windowHeight);
   textFont(assets.font1);
+  assets.bgm.setVolume(1);  // 设置音量
+  assets.bgm.loop();  // 循环播放
 }
 
 function draw() {
@@ -73,17 +75,17 @@ function drawLevelSelectScreen() {
 // 游戏界面
 function drawGameScreen() {
   image(assets.bg, 0, 0, windowWidth, windowHeight*5/4);
-/*
-  // 模拟死亡情况
-  if (frameCount % 600 === 0) { // 几秒后进入死亡界面
+
+  // 死亡
+  if (player[selectedLevel].hp === 0) {
     gameState = "gameOver";
   }
-*/
+
   // 绘制所有图层
   coll1.show();
   others1.show();
-  player[1].update();
-  player[1].show();
+  player[selectedLevel+1].update();
+  player[selectedLevel+1].show();
 
   // 首次开始游戏显示操作提示
   if(firstGameStarted){

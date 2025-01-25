@@ -1,4 +1,4 @@
-// others层
+// others层, 代码和coll类一样, 只是这个类不用来计算碰撞体积
 
 class Others{
     // 构造函数
