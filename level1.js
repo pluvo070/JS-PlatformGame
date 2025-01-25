@@ -10,6 +10,9 @@ let others1;
 // 获取敌人对象
 let enemies1 = []; 
 
+
+let traps1 = []; 
+
 // 解析 JSON 地图
 function ParseJSON(jsonData) {
     Level1Data = jsonData;  // 将解析后的 JSON 赋值给 gameData
@@ -22,6 +25,7 @@ function ParseJSON(jsonData) {
     getColl();
     getOthers();
     getEnemies();
+    getTraps();
 }
 
 // 使用 $.getJSON 加载 JSON 并赋值给 gameData
@@ -76,6 +80,19 @@ function getEnemies(){
         let speed = enemiesLayer.objects[i].properties.speed;
         let hp = enemiesLayer.objects[i].properties.hp;
         enemies1[i] = new OneEnemy(x,y,speed,hp,imgIndex,1);
+    }
+}
+
+
+// 获取陷阱层数据
+function getTraps(){
+    let trapsLayer = Level1Data.layers.find(layer => layer.name === "trap");
+    console.log("陷阱层:", trapsLayer);
+    for(let i = 0; i < trapsLayer.objects.length; i++){
+        let x = trapsLayer.objects[i].x;
+        let y = trapsLayer.objects[i].y - tileSize;
+        let imgIndex = trapsLayer.objects[i].gid;
+        traps1[i] = new OneTrap(x,y,imgIndex,1);
     }
 }
 

@@ -106,6 +106,9 @@ function drawGameScreen() {
   for(let i =0; i<enemies1.length; i++){
     enemies1[i].show();
   }
+  for(let i =0; i<traps1.length; i++){
+    traps1[i].show();
+  }
   player[selectedLevel+1].update();
   player[selectedLevel+1].show();
   
