@@ -101,6 +101,7 @@ function drawGameScreen() {
 
   // 绘制所有图层
   coll[selectedLevel].show();
+  water[selectedLevel].update();
   water[selectedLevel].show();
   others[selectedLevel].show();
   for(let i =0; i<enemies[selectedLevel].length; i++){
