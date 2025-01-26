@@ -151,34 +151,6 @@
          "name":"enemies",
          "objects":[
                 {
-                 "gid":290,
-                 "height":21,
-                 "id":7,
-                 "name":"slime1",
-                 "properties":[
-                        {
-                         "name":"hp",
-                         "type":"int",
-                         "value":1
-                        }, 
-                        {
-                         "name":"range",
-                         "type":"int",
-                         "value":8
-                        }, 
-                        {
-                         "name":"speed",
-                         "type":"float",
-                         "value":1.5
-                        }],
-                 "rotation":0,
-                 "type":"slime",
-                 "visible":true,
-                 "width":21,
-                 "x":672,
-                 "y":420
-                }, 
-                {
                  "gid":381,
                  "height":21,
                  "id":9,
@@ -276,10 +248,10 @@
                  "y":399
                 }, 
                 {
-                 "gid":290,
+                 "gid":291,
                  "height":21,
-                 "id":92,
-                 "name":"slime2",
+                 "id":260,
+                 "name":"slime1",
                  "properties":[
                         {
                          "name":"hp",
@@ -290,6 +262,34 @@
                          "name":"range",
                          "type":"int",
                          "value":6
+                        }, 
+                        {
+                         "name":"speed",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"slime",
+                 "visible":true,
+                 "width":21,
+                 "x":672,
+                 "y":420
+                }, 
+                {
+                 "gid":291,
+                 "height":21,
+                 "id":261,
+                 "name":"slime2",
+                 "properties":[
+                        {
+                         "name":"hp",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"range",
+                         "type":"int",
+                         "value":8
                         }, 
                         {
                          "name":"speed",
@@ -858,7 +858,7 @@
          "y":0
         }],
  "nextlayerid":11,
- "nextobjectid":259,
+ "nextobjectid":262,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.1",

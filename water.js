@@ -7,6 +7,7 @@ class Water{
 
         // 帧动画控制相关
         this.frameCounter = 0; // 计数器
+        // 复制数组, 非0水域索引+2
         this.nextFrameData = new Array(this.data.length);
         for (let i = 0; i < this.data.length; i++) {
             this.nextFrameData[i] = this.data[i];
@@ -14,6 +15,7 @@ class Water{
                 this.nextFrameData[i] += 2;
             }
         }
+        // 让它每隔一段时间指向原数组或新数组,用以控制显示哪个帧
         this.nowFrameData = this.data;
     }
 

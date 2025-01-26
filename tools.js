@@ -17,7 +17,7 @@ let offsetX = 0;  // 水平偏移
 let offsetY = 0;  // 垂直偏移
 //let cameraSpeed = 5; // 镜头的移动速度，控制视窗跟随的灵敏度
 
-let frameInterval = 20; // 控制场景帧动画切换都是20帧一换
+let frameInterval = 18; // 控制场景帧动画切换都是18帧一换
 
 let keys = {}; // 空对象用于存储当前按键信息,控制人物持续移动
 let messages = []; // 用于存储所有的提示消息(固定时间消失)
