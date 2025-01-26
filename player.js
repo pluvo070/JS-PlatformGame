@@ -94,17 +94,15 @@ class Player {
         offsetX = this.x - windowWidth / 2;
         offsetY = this.y - windowHeight / 2;
 
-        // 检查玩家四条边界是否碰撞
-        let left   = this.isColliding(newX, newY);  // 左上角
-        let right  = this.isColliding(newX + tileSize, newY);  // 右上
-        let top    = this.isColliding(newX + tileSize, newY + tileSize);  // 右下
-        let bottom = this.isColliding(newX, newY + tileSize);  // 左下
+        // 检查玩家四条边界是否碰撞: 每条边取两个点
+        let left   = this.isColliding(newX, newY) || this.isColliding(newX, newY + tileSize/2);  // 左边上中两个点
+        let right  = this.isColliding(newX + tileSize, newY) || this.isColliding(newX + tileSize, newY + tileSize/2);  // 右边上中两个点
+        let top    = this.isColliding(newX + tileSize/3, newY) || this.isColliding(newX + 2*tileSize/3, newY) ;  // 上方中间两个点
+        let bottom = this.isColliding(newX + tileSize/3, newY + tileSize) || this.isColliding(newX + 2*tileSize/3, newY + tileSize);  // 下方中间两个点
 
-  
-        // 只允许安全方向移动
         // 处理水平碰撞
         if (!left && !right) { 
-            this.x = newX;
+            this.x = newX; // 无碰撞可移动
         }
         // 处理垂直碰撞
         if (!top && !bottom) {
