@@ -43,6 +43,7 @@ class Player {
         this.beAttacked();
         this.beTrapped();
         this.getBox();
+        this.getDiamond();
 
         // 判断人物是否入水
         if(this.inWater(this.x, this.y)){
@@ -94,11 +95,12 @@ class Player {
         offsetY = this.y - windowHeight / 2;
 
         // 检查玩家四条边界是否碰撞
-        let left   = this.isColliding(newX, newY );  // 左上角（稍往下，避免浮空检测）
-        let right  = this.isColliding(newX + tileSize, newY );  // 右上角
-        let top    = this.isColliding(newX , newY);  // 上方（稍往右）
-        let bottom = this.isColliding(newX , newY + tileSize);  // 下方
+        let left   = this.isColliding(newX, newY);  // 左上角
+        let right  = this.isColliding(newX + tileSize, newY);  // 右上
+        let top    = this.isColliding(newX + tileSize, newY + tileSize);  // 右下
+        let bottom = this.isColliding(newX, newY + tileSize);  // 左下
 
+  
         // 只允许安全方向移动
         // 处理水平碰撞
         if (!left && !right) { 
@@ -115,7 +117,6 @@ class Player {
             this.velocityY = 0; // 停止竖直速度
         }
 
-        this.getDiamond();
    }
 
   
@@ -169,10 +170,9 @@ class Player {
         let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[this.levelIndex] + col;
 
-        // 碰撞检测：如果这个格子是墙体（非 0），返回 true
+        // 碰撞检测：如果这个格子是碰撞体(非0), 返回 true
         return coll[this.levelIndex].data[tileIndex] !== 0;
     }
-
 
     // 计算是否碰到钻石
     getDiamond(){
