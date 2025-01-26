@@ -31,8 +31,11 @@ class OneTrap{
         // 将人物左上角化为中心点
         px += tileSize/2;
         py += tileSize/2;
-        if (px >= (this.x - tileSize/2 - d) && px <= (this.x + 2*tileSize/3 + d )
-            && py >= (this.y - tileSize/2 - d) && py <= (this.y + 2*tileSize/3 + d) ) {
+        // 将陷阱左上角化为中心点
+        let centX = this.x + tileSize/2;
+        let centY = this.y + tileSize/2;
+        if (px >= (centX - tileSize - d) && px <= (centX + tileSize + d )
+            && py >= (centY - tileSize - d) && py <= (centY + tileSize + d) ) {
             return true}
         else {return false}
     }

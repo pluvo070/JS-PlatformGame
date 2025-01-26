@@ -164,10 +164,23 @@ function drawGameOverScreen() {
   strokeWeight(2);
   stroke(0,0,0,textAlpha);
   text("GameOver!\nPress R to restart", width/2, height/2);
-  //重置游戏数据
+  // 重置游戏数据
   for(let i=0; i<player.length; i++){
     player[selectedLevel].hp = player[selectedLevel].maxhp;
     player[selectedLevel].diamondNum = 0;
+    player[selectedLevel].x = player[selectedLevel].iniX;
+    player[selectedLevel].y = player[selectedLevel].iniY;
+    player[selectedLevel].invincible = false;
+  }
+  for(let i=0; i<diamonds.length; i++){
+    diamonds[selectedLevel][i].visible = true;
+  }
+  for(let i=0; i<boxes.length; i++){
+    boxes[selectedLevel][i].visible = true;
+  }
+  for(let i=0; i<enemies[selectedLevel].length; i++){
+    enemies[selectedLevel][i].visible = true;
+    enemies[selectedLevel][i].hp = enemies[selectedLevel][i].maxhp;
   }
 }
 
