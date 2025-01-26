@@ -8,10 +8,21 @@ class OneDiamond{
         this.levelIndex = levelIndex;
         this.imgIndex = imgIndex;
         this.visible = true;// 玩家角色碰到后改为false
+
+        this.frameCounter = 0; // 计数器
+        this.frameIndex = 0; // 当前动画帧索引, 从0开始循环播放
+        this.animationFrames = [imgIndex, imgIndex-91]; // 两个帧
     }
 
     show() {
         if(this.visible){
+
+            this.frameCounter++;
+            if (this.frameCounter % frameInterval === 0) { // 每20帧切换一次
+                this.frameIndex = (this.frameIndex + 1) % this.animationFrames.length;
+                this.imgIndex = this.animationFrames[this.frameIndex];
+            }
+
             //text(`${this.x},${this.y}`,this.x-offsetX,this.y-offsetY);
             let coordinate = getTilePosition(this.imgIndex);
             let offsetX = (player[this.levelIndex].x - windowWidth / 2);
