@@ -1,6 +1,6 @@
 let gameState = "start"; // 当前游戏状态
 let levels = [1, 2, 3, 4, 5];  // 关卡列表
-let selectedLevel = 0;  // 选中的关卡索引
+let selectedLevel = 0;  // 选中的关卡索引, 从0开始
 
 let keys = {}; // 空对象用于存储当前按键信息,控制人物持续移动
 var messages = []; // 用于存储所有的提示消息(固定时间消失)
@@ -101,10 +101,10 @@ function drawGameScreen() {
   }
 
   // 绘制所有图层
-  coll1.show();
-  others1.show();
-  for(let i =0; i<enemies1.length; i++){
-    enemies1[i].show();
+  coll[selectedLevel].show();
+  others[selectedLevel].show();
+  for(let i =0; i<enemies[selectedLevel].length; i++){
+    enemies[selectedLevel][i].show();
   }
   for(let i =0; i<traps1.length; i++){
     traps1[i].show();
@@ -115,9 +115,9 @@ function drawGameScreen() {
   for(let i =0; i<boxes1.length; i++){
     boxes1[i].show();
   }
-  flag1.show();
-  player[selectedLevel+1].update();
-  player[selectedLevel+1].show();
+  flag[selectedLevel].show();
+  player[selectedLevel].update();
+  player[selectedLevel].show();
   
 
   // 首次开始游戏显示操作提示
@@ -145,7 +145,8 @@ function drawGameScreen() {
   stroke(255,255,255,textAlpha);
   textAlign(LEFT,TOP);
   text(`Level: ${selectedLevel}`, 30, 30);
-  text(`HP: ${player[selectedLevel+1].hp}`, 30, 60);
+  text(`HP: ${player[selectedLevel].hp}`, 30, 60);
+  text(`Diamonds: ${player[selectedLevel].diamondNum} / ${diamonds1.length}`, 30, 90);
 }
 
 

@@ -1,25 +1,34 @@
 let Level1Data = {};  // 用于存储解析后的JSON数据,它是一个对象
 
 
+let levelIndex = 0;
+
+// 获取对象存入数组
+
 let player = []; // 玩家类的对象,用于存储json中获得的数据
-player[0] = 0;
+                // player[0] 是第一关的玩家对象, 以此类推  
+player[levelIndex] = null;
 
-let coll1;
-let others1;
+let coll = []; // coll[0] 是第一关的碰撞层对象, 对象中包括多个属性, 如data属性是一个数组
 
-// 获取对象数组
-let enemies1 = []; 
+let others = [];
+
+let flag = []; // flag[0] 是第一关的旗对象, 以此类推
+
+let enemies = []; // enemies[0] 是第一关的敌人对象数组, 这之中又包括每一个第一关的敌人
+enemies[levelIndex] = []; // 初始化为一个数组
+
+
 let traps1 = []; 
 let diamonds1 = [];
-let flag1;
 let boxes1 = [];
 
 // 解析 JSON 地图
 function ParseJSON(jsonData) {
     Level1Data = jsonData;  // 将解析后的 JSON 赋值给 gameData
     console.log("JSON 解析后:", Level1Data);
-    levelHeight[1] = 30;
-    levelWidth[1] = 100; 
+    levelHeight[levelIndex] = 30;
+    levelWidth[levelIndex] = 100; 
     /* 这些是对json文件数据的操作, 必须放在这个函数里, 因为若放在外面就是异步操作
        不能保证json文件已经解析完成, 会报错undifined  */
     getPlayers();
@@ -31,7 +40,7 @@ function ParseJSON(jsonData) {
     //console.log(diamonds1);
 }
 
-// 使用 $.getJSON 加载 JSON 并赋值给 gameData
+// 使用 $.getJSON 加载 JSON 
 $.getJSON('assets/test03.json', ParseJSON);
 
 // 获取玩家数据并存储到玩家类的对象
@@ -51,28 +60,31 @@ function getPlayers(){
     // console.log(player1img); 
     let x = playerObject.x;
     let y = playerObject.y - tileSize;//直接获得是左下角?
-    player[1] = new Player(x, y, speed, hp, tileindex, 1);
+    player[levelIndex] = new Player(x, y, speed, hp, tileindex, levelIndex);
+    //console.log("存储的玩家对象:", player[levelIndex]);
 }
 
 // 获取碰撞层数据
 function getColl(){
     let collisionLayer = Level1Data.layers.find(layer => layer.name === "coll");
     //console.log("碰撞层:", collisionLayer);
-    coll1 = new Coll(collisionLayer.data, 1);
+    coll[levelIndex] = new Coll(collisionLayer.data, levelIndex);
+    console.log("碰撞层1:", coll[levelIndex]);
 }
 
 // 获取碰撞层others数据(不设计碰撞当做背景)
 function getOthers(){
     let othersLayer = Level1Data.layers.find(layer => layer.name === "others");
     //console.log("others层:", othersLayer);
-    others1 = new Others(othersLayer.data, 1);
+    others[levelIndex] = new Others(othersLayer.data, levelIndex);
 }
 
 // 获取敌人层数据
 function getEnemies(){
     let enemiesLayer = Level1Data.layers.find(layer => layer.name === "enemies");
     //console.log("敌人层:", enemiesLayer);
-    // 获取每个敌人,创建为单个敌人类的对象,存储到数组enemies1里
+    
+    // 获取每个敌人,创建为单个敌人类的对象,存储到数组enemies[levelIndex]里
     for(let i = 0; i < enemiesLayer.objects.length; i++){
         //console.log("敌人层对象数量:", enemiesLayer.objects.length);
         //console.log("enemiesLayer.objects[i]:", enemiesLayer.objects[i]);
@@ -82,8 +94,9 @@ function getEnemies(){
         let imgIndex = enemiesLayer.objects[i].gid;
         let speed = enemiesLayer.objects[i].properties.speed;
         let hp = enemiesLayer.objects[i].properties.hp;
-        enemies1[i] = new OneEnemy(x,y,speed,hp,imgIndex,1);
+        enemies[levelIndex][i] = new OneEnemy(x,y,speed,hp,imgIndex,levelIndex);
     }
+    console.log("敌人层:", enemies[levelIndex]);
 }
 
 
@@ -95,7 +108,7 @@ function getTraps(){
         let x = trapsLayer.objects[i].x;
         let y = trapsLayer.objects[i].y - tileSize;
         let imgIndex = trapsLayer.objects[i].gid;
-        traps1[i] = new OneTrap(x,y,imgIndex,1);
+        traps1[i] = new OneTrap(x,y,imgIndex,levelIndex);
     }
 }
 
@@ -111,19 +124,19 @@ function getInteract(){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            diamonds1[diamondNum++] = new OneDiamond(x,y,imgIndex,1);
+            diamonds1[diamondNum++] = new OneDiamond(x,y,imgIndex,levelIndex);
         }
         else if(interType === "box"){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            boxes1[boxNum++] = new OneBox(x,y,imgIndex,1);
+            boxes1[boxNum++] = new OneBox(x,y,imgIndex,levelIndex);
         }
         else if(interType === "flag"){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            flag1 = new OneFlag(x,y,imgIndex,1);
+            flag[levelIndex] = new OneFlag(x,y,imgIndex,levelIndex);
         }
 
     }

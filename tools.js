@@ -5,15 +5,15 @@ let windowWidth = 500;
 
 
 let levelHeight = []; // 记录每个关卡的宽高(几个瓦片)
+// 其中levelHeight[0]代表第一关的高度(瓦片数),这个值在level1.js里设定
 let levelWidth = [];
 let tileSize = 21;
 let tilemargin = 2;
 
 let offsetX = 0;  // 水平偏移
 let offsetY = 0;  // 垂直偏移
-let cameraSpeed = 5; // 镜头的移动速度，控制视窗跟随的灵敏度
+//let cameraSpeed = 5; // 镜头的移动速度，控制视窗跟随的灵敏度
 
-//let keySpace = false; // 记录是否按下空格键
 
 
 // 根据索引(从1开始,30一行)计算瓦片在瓦片素材表png里的坐标{x,y}

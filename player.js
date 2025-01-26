@@ -90,14 +90,14 @@ class Player {
         let tileIndex = row * levelWidth[this.levelIndex] + col;
 
         // 碰撞检测：如果这个格子是墙体（非 0），返回 true
-        return coll1.data[tileIndex] !== 0;
+        return coll[this.levelIndex].data[tileIndex] !== 0;
     }
 
 
     // 计算是否碰到钻石
     getDiamond(){
         // 此处以level1的钻石为例,后续还需要更改
-        for(let i=0; i < diamonds1.length; i++){
+        for(let i = 0; i < diamonds1.length; i++){
             if(diamonds1[i].visible && diamonds1[i].isNear(this.x,this.y)){
                 diamonds1[i].visible = false;
                 this.diamondNum ++;
@@ -105,6 +105,7 @@ class Player {
             }
         }
     }
+
 
 }
   
