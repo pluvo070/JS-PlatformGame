@@ -7,11 +7,21 @@ class OneFlag{
         this.y = y;
         this.levelIndex = levelIndex;
         this.imgIndex = imgIndex;
+
+        this.frameCounter = 0; // 计数器
+        this.frameIndex = 0; // 当前动画帧索引, 从0开始循环播放
+        this.animationFrames = [imgIndex, imgIndex+30]; // 两个帧
     }
 
 
     show() {
         //text(`${this.x},${this.y}`,this.x-offsetX,this.y-offsetY);
+        this.frameCounter++;
+        if (this.frameCounter % frameInterval === 0) { 
+            this.frameIndex = (this.frameIndex + 1) % this.animationFrames.length;
+            this.imgIndex = this.animationFrames[this.frameIndex];
+        }
+        
         let coordinate = getTilePosition(this.imgIndex);
         let offsetX = (player[this.levelIndex].x - windowWidth / 2);
         let offsetY = (player[this.levelIndex].y - windowHeight / 2);

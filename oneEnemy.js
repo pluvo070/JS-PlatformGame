@@ -28,7 +28,7 @@ class OneEnemy{
     show() {
         if(this.visible){
             this.frameCounter++;
-            if (this.frameCounter % frameInterval === 0) { // 每20帧切换一次
+            if (this.frameCounter % frameInterval === 0) { 
                 this.frameIndex = (this.frameIndex + 1) % this.animationFrames.length;
                 this.imgIndex = this.animationFrames[this.frameIndex];
             }
