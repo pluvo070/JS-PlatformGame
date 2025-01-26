@@ -47,5 +47,13 @@ class OneEnemy{
         }
     }
 
+    // 检查给定的点是否在附近(附近才可以交互)
+    isNear(px, py) {
+        let d = 5; // 四边的d范围内
+        if (px >= (this.x - d) && px <= (this.x + tileSize + d )
+            && py >= (this.y - d) && py <= (this.y + tileSize + d) ) {
+            return true}
+        else {return false}
+    }
 
 }
