@@ -3,27 +3,11 @@ let Level1Data = {};  // 用于存储解析后的JSON数据,它是一个对象
 
 let levelIndex = 0;
 
-// 获取对象存入数组
 
-let player = []; // 玩家类的对象,用于存储json中获得的数据
-                // player[0] 是第一关的玩家对象, 以此类推  
 player[levelIndex] = null;
-
-let coll = []; // coll[0] 是第一关的碰撞层对象, 对象中包括多个属性, 如data属性是一个数组
-
-let others = [];
-
-let flag = []; // flag[0] 是第一关的旗对象, 以此类推
-
-let enemies = []; // enemies[0] 是第一关的敌人对象数组, 这之中又包括每一个第一关的敌人
 enemies[levelIndex] = []; // 初始化为一个数组
-
-
-let traps = []; 
 traps[levelIndex] = [];
-let diamonds = [];
 diamonds[levelIndex] = [];
-let boxes = [];
 boxes[levelIndex] = [];
 
 

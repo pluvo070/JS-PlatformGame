@@ -1,5 +1,7 @@
 // 工具类
 
+
+// 所有的初始化变量
 let windowHeight = 350; // 记录窗口大小
 let windowWidth = 500;
 
@@ -15,6 +17,22 @@ let offsetY = 0;  // 垂直偏移
 //let cameraSpeed = 5; // 镜头的移动速度，控制视窗跟随的灵敏度
 
 
+
+// 获取对象存入数组
+let player = []; // 玩家类的对象,用于存储json中获得的数据
+                // player[0] 是第一关的玩家对象, 以此类推  
+
+let coll = []; // coll[0] 是第一关的碰撞层对象, 对象中包括多个属性, 如data属性是一个数组
+let others = [];
+let flag = []; // flag[0] 是第一关的旗对象, 以此类推
+let enemies = []; // enemies[0] 是第一关的敌人对象数组, 这之中又包括每一个第一关的敌人
+
+let traps = []; 
+let diamonds = [];
+let boxes = [];
+
+
+// 工具数组
 
 // 根据索引(从1开始,30一行)计算瓦片在瓦片素材表png里的坐标{x,y}
 function getTilePosition(i) {
