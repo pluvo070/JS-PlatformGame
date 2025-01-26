@@ -42,12 +42,12 @@ class Player {
 
         this.beAttacked();
         this.beTrapped();
+        this.getBox();
 
         // 判断人物是否入水
         if(this.inWater(this.x, this.y)){
             this.hp --;
             assets.deathSound.play();
-            textSize(20);
             let message1 = "Don't jump into water!"
             messages.push(new Message(message1,width/2,4*height/5,3000,20,200,200,255,159,237));
             this.x = this.iniX;
@@ -182,6 +182,18 @@ class Player {
                 diamonds[selectedLevel][i].visible = false;
                 this.diamondNum ++;
                 console.log("人物钻石数量:", this.diamondNum);
+            }
+        }
+    }
+
+    // 计算是否碰到box
+    getBox(){
+        for(let i = 0; i < boxes[selectedLevel].length; i++){
+            if(boxes[selectedLevel][i].visible && boxes[selectedLevel][i].isNear(this.x,this.y)){
+                assets.getDiamondSound.play();
+                boxes[selectedLevel][i].visible = false;
+                let message1 = "Will coming soon!"
+                messages.push(new Message(message1,width/2,4*height/5,3000,20,200,200,255,159,237));
             }
         }
     }

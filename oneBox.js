@@ -38,4 +38,19 @@ class OneBox{
             );
         }
     }
+
+
+    // 检查给定的点是否在附近
+    isNear(px, py) {
+        let d = 5; // 四边的d范围内
+        // 将人物左上角化为中心点
+        px += tileSize/2;
+        py += tileSize/2;
+        if (px >= (this.x - tileSize/2 - d) && px <= (this.x + 2*tileSize/3 + d )
+            && py >= (this.y - tileSize/2 - d) && py <= (this.y + 2*tileSize/3 + d) ) {
+            return true}
+        else {return false}
+    }
+
+
 }
