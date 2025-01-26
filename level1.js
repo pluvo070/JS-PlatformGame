@@ -79,21 +79,18 @@ function getOthers(){
 // 获取敌人层数据
 function getEnemies(){
     let enemiesLayer = Level1Data.layers.find(layer => layer.name === "enemies");
-    //console.log("敌人层:", enemiesLayer);
-    
+    console.log("敌人层:", enemiesLayer);
     // 获取每个敌人,创建为单个敌人类的对象,存储到数组enemies[levelIndex]里
     for(let i = 0; i < enemiesLayer.objects.length; i++){
-        //console.log("敌人层对象数量:", enemiesLayer.objects.length);
-        //console.log("enemiesLayer.objects[i]:", enemiesLayer.objects[i]);
-        //console.log("enemiesLayer.objects[i].x:", enemiesLayer.objects[i].x);
         let x = enemiesLayer.objects[i].x;
         let y = enemiesLayer.objects[i].y - tileSize;
         let imgIndex = enemiesLayer.objects[i].gid;
-        let speed = enemiesLayer.objects[i].properties.speed;
-        let hp = enemiesLayer.objects[i].properties.hp;
-        enemies[levelIndex][i] = new OneEnemy(x,y,speed,hp,imgIndex,levelIndex);
+        let speed = enemiesLayer.objects[i].properties.find(p => p.name === "speed").value;
+        let hp = enemiesLayer.objects[i].properties.find(p => p.name === "hp").value;
+        let range = enemiesLayer.objects[i].properties.find(p => p.name === "range").value;
+        enemies[levelIndex][i] = new OneEnemy(x,y,speed,hp,range,imgIndex,levelIndex);
     }
-    console.log("敌人层:", enemies[levelIndex]);
+    console.log("敌人层获得:", enemies[levelIndex]);
 }
 
 

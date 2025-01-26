@@ -105,6 +105,7 @@ function drawGameScreen() {
   water[selectedLevel].show();
   others[selectedLevel].show();
   for(let i =0; i<enemies[selectedLevel].length; i++){
+    enemies[selectedLevel][i].update();
     enemies[selectedLevel][i].show();
   }
   for(let i =0; i<traps[selectedLevel].length; i++){
@@ -207,6 +208,7 @@ function drawLevelCompleteScreen() {
 function keyPressed() {
   if (gameState === "start" && keyCode === ENTER) {
     gameState = "levelSelect";
+    assets.clicked.play();
     transition();
   } else if (gameState === "levelSelect") {
     if (keyCode === LEFT_ARROW) {
@@ -215,10 +217,12 @@ function keyPressed() {
       selectedLevel = min(levels.length - 1, selectedLevel + 1);
     } else if (keyCode === 32) {  // 空格键进入关卡
       gameState = "playing";
+      assets.clicked.play();
       transition();
     }
   } else if (gameState === "gameOver" && key === 'r') {
     gameState = "start";
+    assets.clicked.play();
     transition();
   }
   else if(gameState ==="playing"){

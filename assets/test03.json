@@ -11,7 +11,7 @@
  "layers":[
         {
          "id":6,
-         "image":"..\/json\u7d20\u6750\/\u74e6\u7247png\/backgrounds.png",
+         "image":"..\/..\/json\u7d20\u6750\/\u74e6\u7247png\/backgrounds.png",
          "imageheight":189,
          "imagewidth":231,
          "name":"bg",
@@ -157,6 +157,11 @@
                  "name":"fish3",
                  "properties":[
                         {
+                         "name":"hp",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"range",
                          "type":"int",
                          "value":11
@@ -180,6 +185,11 @@
                  "name":"fish1",
                  "properties":[
                         {
+                         "name":"hp",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
                          "name":"range",
                          "type":"int",
                          "value":10
@@ -202,6 +212,11 @@
                  "id":11,
                  "name":"fish2",
                  "properties":[
+                        {
+                         "name":"hp",
+                         "type":"int",
+                         "value":1
+                        }, 
                         {
                          "name":"range",
                          "type":"int",
@@ -238,7 +253,7 @@
                         {
                          "name":"speed",
                          "type":"float",
-                         "value":1.8
+                         "value":1.2
                         }],
                  "rotation":0,
                  "type":"ghost",
@@ -261,12 +276,12 @@
                         {
                          "name":"range",
                          "type":"int",
-                         "value":6
+                         "value":8
                         }, 
                         {
                          "name":"speed",
                          "type":"float",
-                         "value":1.5
+                         "value":1
                         }],
                  "rotation":0,
                  "type":"slime",
@@ -289,12 +304,12 @@
                         {
                          "name":"range",
                          "type":"int",
-                         "value":8
+                         "value":6
                         }, 
                         {
                          "name":"speed",
                          "type":"float",
-                         "value":1.5
+                         "value":1
                         }],
                  "rotation":0,
                  "type":"slime",
@@ -530,7 +545,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/json\u7d20\u6750\/\u74e6\u7247tsx\/spritesheet.tsx"
+         "source":"..\/..\/json\u7d20\u6750\/\u74e6\u7247tsx\/spritesheet.tsx"
         }],
  "tilewidth":21,
  "type":"map",

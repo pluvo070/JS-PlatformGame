@@ -1,3 +1,7 @@
+// x y 都是世界坐标系
+// offsetX offsetY 是相机偏移量
+// 所有物品的位置计算都使用世界坐标系
+// 所有物品都在绘制时添加偏移量即可
 
 class Player {
 
@@ -147,8 +151,10 @@ class Player {
             // 这样水平翻转时仍然基于这个点左右对称, 不用在image函数中拆分计算图形左上角坐标
             translate(this.x-offsetX+tileSize/2, this.y-offsetY);
             // 水平翻转, 如果facingRight则不变, 否则反转
-            let tmp = this.facingRight ? 1 : -1; // 水平缩放因子-1表示水平翻转
-            scale(tmp, 1); 
+            if (!this.facingRight) {
+                scale(-1, 1); // 水平翻转
+            }
+
 
             // 绘制玩家图像到画面上
             image(
