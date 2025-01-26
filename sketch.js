@@ -39,7 +39,9 @@ function draw() {
     drawGameScreen();
   } else if (gameState === "gameOver") {
     drawGameOverScreen();
-  } 
+  } else if (gameState === "levelComplete") {
+    drawLevelCompleteScreen();
+  }
 
   //测试
 
@@ -119,6 +121,10 @@ function drawGameScreen() {
   player[selectedLevel].update();
   player[selectedLevel].show();
   
+  // 判定是否触碰旗帜结束当前关卡
+  if (flag[selectedLevel].isNear(player[selectedLevel].x, player[selectedLevel].y)) {
+    gameState = "levelComplete";
+  }
 
   // 首次开始游戏显示操作提示
   if(firstGameStarted){
@@ -136,9 +142,8 @@ function drawGameScreen() {
   if (messages.length > 0 && messages[0].isExpired()) {
     messages.shift();
   }
-  rectMode(CORNER);
-
   // 页面常驻消息
+  rectMode(CORNER);
   fill(255,159,237,textAlpha);
   textSize(15);
   strokeWeight(2);
@@ -163,6 +168,25 @@ function drawGameOverScreen() {
   text("GameOver! Press R to restart", width / 2, height / 2);
 }
 
+// 关节结束画面
+function drawLevelCompleteScreen() {
+  background(123, 180, 145);
+  tint(255, imgAlpha);// 改变图片的透明度
+  //...这里插入关卡选择背景图片
+  noTint();
+  textAlign(CENTER, CENTER);
+  textSize(26);
+  fill(0, 0, 0, textAlpha);
+  strokeWeight(3);
+  stroke(255, 255, 255, textAlpha);
+  text("Level Complete!", width/2, height/2 - 50);
+  textSize(20);
+  strokeWeight(2);
+  text("Press ANY KEY for next level", width/2, height/2 +50);
+  text("Press ESC to return to level select", width/2, height/2 +100);
+}
+
+
 // 监听键盘输入来切换场景
 function keyPressed() {
   if (gameState === "start" && keyCode === ENTER) {
@@ -183,12 +207,30 @@ function keyPressed() {
   }
   else if(gameState ==="playing"){
     keys[key] = true;//控制人物移动和交互
-    console.log(key + " " + keyCode);//测试
+    console.log(key + " " + keyCode);//调试信息
+  }
+  else if (gameState === "levelComplete") {
+    // 按 ESC 返回关卡选择
+    if (keyCode === ESCAPE) {
+      gameState = "levelSelect";
+      transition();
+    } else {
+      // 进入下一关
+      if (selectedLevel < levels.length - 1) {
+        selectedLevel++;
+        gameState = "playing";
+      } else {
+        gameState = "levelSelect"; // 如果是最后一关, 回到关卡选择
+      }
+      transition();
+    }
   }
 }
 
 // 松开键盘后停止人物移动
 function keyReleased() {
-  keys[key] = false; 
+  if (keys[key] !== undefined) {
+    keys[key] = false;
+  }
 }
 
