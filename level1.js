@@ -25,7 +25,8 @@ function ParseJSON(jsonData) {
     getEnemies();
     getTraps();
     getInteract();
-    //console.log(diamonds1);
+    getWater();
+    
 }
 
 // 使用 $.getJSON 加载 JSON 
@@ -58,6 +59,14 @@ function getColl(){
     //console.log("碰撞层:", collisionLayer);
     coll[levelIndex] = new Coll(collisionLayer.data, levelIndex);
     console.log("碰撞层1:", coll[levelIndex]);
+}
+
+// 获取碰撞层water数据
+function getWater(){
+    let Layer = Level1Data.layers.find(layer => layer.name === "water");
+    //console.log("层:", Layer);
+    water[levelIndex] = new Water(Layer.data, levelIndex);
+    //console.log("水层1:", water[levelIndex]);
 }
 
 // 获取碰撞层others数据(不设计碰撞当做背景)

@@ -7,6 +7,8 @@ class Player {
     constructor(x, y, speed, hp, imgIndex, levelIndex) {
         this.x = x;
         this.y = y;
+        this.iniX = x; //记录出生点坐标
+        this.iniY = y;
         this.speed = speed;
         this.maxhp = hp; // 最大血量
         this.hp = hp; // 当前血量, 初始值为最大血量
@@ -30,6 +32,18 @@ class Player {
         let newX = this.x;
         let newY = this.y;
         let moving = false; // 标记是否在移动
+
+        // 判断人物是否入水
+        if(this.inWater(this.x, this.y)){
+            this.hp --;
+            assets.deathSound.play();
+            textSize(20);
+            let message1 = "Don't jump into water!"
+            messages.push(new Message(message1,width/2,4*height/5,3000,20,200,200,255,159,237));
+            this.x = this.iniX;
+            this.y = this.iniY;
+            return;
+        }
 
         if (keys['ArrowLeft']) {
             newX -= this.speed;
@@ -121,9 +135,9 @@ class Player {
     }
 
     // 计算给定坐标是否在碰撞层
-    isColliding(x, y) {
-        let col = Math.floor(x / tileSize);
-        let row = Math.floor(y / tileSize);
+    isColliding(px, py) {
+        let col = Math.floor(px / tileSize);
+        let row = Math.floor(py / tileSize);
         let tileIndex = row * levelWidth[this.levelIndex] + col;
 
         // 碰撞检测：如果这个格子是墙体（非 0），返回 true
@@ -133,7 +147,6 @@ class Player {
 
     // 计算是否碰到钻石
     getDiamond(){
-
         for(let i = 0; i < diamonds[selectedLevel].length; i++){
             if(diamonds[selectedLevel][i].visible && diamonds[selectedLevel][i].isNear(this.x,this.y)){
                 diamonds[selectedLevel][i].visible = false;
@@ -141,6 +154,16 @@ class Player {
                 console.log("人物钻石数量:", this.diamondNum);
             }
         }
+    }
+
+
+    // 计算是否碰到水
+    inWater(px, py){
+        let col = Math.floor(px / tileSize);
+        let row = Math.floor(py / tileSize);
+        let tileIndex = row * levelWidth[this.levelIndex] + col;
+        // 碰撞检测：如果这个格子是水, 返回真
+        return water[this.levelIndex].data[tileIndex] !== 0;
     }
 
 

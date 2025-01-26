@@ -1,10 +1,6 @@
 let gameState = "start"; // 当前游戏状态
 let levels = [1, 2, 3, 4, 5];  // 关卡列表
 let selectedLevel = 0;  // 选中的关卡索引, 从0开始
-
-let keys = {}; // 空对象用于存储当前按键信息,控制人物持续移动
-var messages = []; // 用于存储所有的提示消息(固定时间消失)
-
 let firstGameStarted = true; // 游戏首次开始标志,用于显示游戏提示
 
 
@@ -99,11 +95,13 @@ function drawGameScreen() {
   noTint();
   // 死亡
   if (player[selectedLevel].hp === 0) {
+    assets.deathSound.play();
     gameState = "gameOver";
   }
 
   // 绘制所有图层
   coll[selectedLevel].show();
+  water[selectedLevel].show();
   others[selectedLevel].show();
   for(let i =0; i<enemies[selectedLevel].length; i++){
     enemies[selectedLevel][i].show();
@@ -123,6 +121,7 @@ function drawGameScreen() {
   
   // 判定是否触碰旗帜结束当前关卡
   if (flag[selectedLevel].isNear(player[selectedLevel].x, player[selectedLevel].y)) {
+    assets.levelClearSound.play();
     gameState = "levelComplete";
   }
 
@@ -153,8 +152,6 @@ function drawGameScreen() {
   text(`HP: ${player[selectedLevel].hp}`, 30, 60);
   text(`Diamonds: ${player[selectedLevel].diamondNum} / ${diamonds[selectedLevel].length}`, 30, 90);
 }
-
-
 
 
 // 死亡界面
