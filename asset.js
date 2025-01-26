@@ -11,7 +11,7 @@ function preload() {
   assets.jumpSound = loadSound("assets/slime_jump.mp3");// 跳跃音效
   assets.deathSound = loadSound("assets/death.wav");// 死亡音效
   assets.levelClearSound = loadSound("assets/round_end.wav");// 通关音效
-
+  assets.getDiamondSound = loadSound("assets/powerUp9.mp3");// 获得钻石音效
 
 }
 

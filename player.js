@@ -149,6 +149,7 @@ class Player {
     getDiamond(){
         for(let i = 0; i < diamonds[selectedLevel].length; i++){
             if(diamonds[selectedLevel][i].visible && diamonds[selectedLevel][i].isNear(this.x,this.y)){
+                assets.getDiamondSound.play();
                 diamonds[selectedLevel][i].visible = false;
                 this.diamondNum ++;
                 console.log("人物钻石数量:", this.diamondNum);
