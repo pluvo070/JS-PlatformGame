@@ -158,11 +158,16 @@ function drawGameScreen() {
 function drawGameOverScreen() {
   background(255, 0, 0);
   textAlign(CENTER, CENTER);
-  textSize(32);
+  textSize(25);
   fill(255,255,255,textAlpha);
   strokeWeight(2);
   stroke(0,0,0,textAlpha);
-  text("GameOver! Press R to restart", width / 2, height / 2);
+  text("GameOver!\nPress R to restart", width/2, height/2);
+  //重置游戏数据
+  for(let i=0; i<player.length; i++){
+    player[selectedLevel].hp = player[selectedLevel].maxhp;
+    player[selectedLevel].diamondNum = 0;
+  }
 }
 
 // 关节结束画面

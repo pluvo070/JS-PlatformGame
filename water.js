@@ -4,6 +4,7 @@ class Water{
     constructor(data, levelIndex) {
         this.data = data;
         this.levelIndex = levelIndex;
+        
     }
 
     // 将整个层绘制到界面

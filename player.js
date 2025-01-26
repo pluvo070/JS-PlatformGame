@@ -1,6 +1,4 @@
 
-
-
 class Player {
 
     // 构造函数
@@ -13,9 +11,6 @@ class Player {
         this.maxhp = hp; // 最大血量
         this.hp = hp; // 当前血量, 初始值为最大血量
         this.levelIndex = levelIndex;
-        this.imgIndex = imgIndex + 9; // 图标起始坐标
-            /* 帧动画这里以第一关为例, 选择索引是89/90切换
-               由于tiled里面设置的是80, 因此这里+9 */
         this.diamondNum = 0;
 
         this.velocityY = 0; // 垂直速度
@@ -25,6 +20,10 @@ class Player {
 
         this.frameCounter = 0; // 控制走路帧切换
         this.facingRight = true; // 记录人物方向
+        this.frameIndex = 0; // 当前动画帧索引, 从0开始循环播放
+        this.animationFrames = [imgIndex+9, imgIndex+10]; // 两个帧
+            /* 帧动画这里以第一关为例, 选择索引是89/90切换
+               由于tiled里面设置的是80, 因此这里+9 */
     }
 
     // 移动 + 限制玩家的位置
@@ -56,15 +55,15 @@ class Player {
             moving = true;
         }
 
-        // 控制帧动画
-        if (moving) { // 角色移动帧动画交替
+        // 角色移动帧动画交替
+        if (moving) { 
             this.frameCounter++; // 计数器,每次update+1
             if (this.frameCounter % 10 === 0) { // 每10帧切换一次帧动画
-                //是89则换为90, 是90则换为89
-                this.imgIndex = (this.imgIndex === 89) ? 90 : 89;
+                this.frameIndex = (this.frameIndex + 1) % this.animationFrames.length;
+                this.imgIndex = this.animationFrames[this.frameIndex];
             }
         } else { // 角色静止, 帧动画停止
-            this.imgIndex = 89; // 角色停下时帧动画停在第一个帧89
+            this.imgIndex =this.animationFrames[0]; // 角色停下时帧动画停在第一个帧89
         }
 
 
