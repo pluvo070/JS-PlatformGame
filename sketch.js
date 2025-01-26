@@ -106,14 +106,14 @@ function drawGameScreen() {
   for(let i =0; i<enemies[selectedLevel].length; i++){
     enemies[selectedLevel][i].show();
   }
-  for(let i =0; i<traps1.length; i++){
-    traps1[i].show();
+  for(let i =0; i<traps[selectedLevel].length; i++){
+    traps[selectedLevel][i].show();
   }
-  for(let i =0; i<diamonds1.length; i++){
-    diamonds1[i].show();
+  for(let i =0; i<diamonds[selectedLevel].length; i++){
+    diamonds[selectedLevel][i].show();
   }
-  for(let i =0; i<boxes1.length; i++){
-    boxes1[i].show();
+  for(let i =0; i<boxes[selectedLevel].length; i++){
+    boxes[selectedLevel][i].show();
   }
   flag[selectedLevel].show();
   player[selectedLevel].update();
@@ -146,7 +146,7 @@ function drawGameScreen() {
   textAlign(LEFT,TOP);
   text(`Level: ${selectedLevel}`, 30, 30);
   text(`HP: ${player[selectedLevel].hp}`, 30, 60);
-  text(`Diamonds: ${player[selectedLevel].diamondNum} / ${diamonds1.length}`, 30, 90);
+  text(`Diamonds: ${player[selectedLevel].diamondNum} / ${diamonds[selectedLevel].length}`, 30, 90);
 }
 
 

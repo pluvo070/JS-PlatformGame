@@ -96,10 +96,10 @@ class Player {
 
     // 计算是否碰到钻石
     getDiamond(){
-        // 此处以level1的钻石为例,后续还需要更改
-        for(let i = 0; i < diamonds1.length; i++){
-            if(diamonds1[i].visible && diamonds1[i].isNear(this.x,this.y)){
-                diamonds1[i].visible = false;
+
+        for(let i = 0; i < diamonds[selectedLevel].length; i++){
+            if(diamonds[selectedLevel][i].visible && diamonds[selectedLevel][i].isNear(this.x,this.y)){
+                diamonds[selectedLevel][i].visible = false;
                 this.diamondNum ++;
                 console.log("人物钻石数量:", this.diamondNum);
             }

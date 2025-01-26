@@ -19,9 +19,13 @@ let enemies = []; // enemies[0] 是第一关的敌人对象数组, 这之中又�
 enemies[levelIndex] = []; // 初始化为一个数组
 
 
-let traps1 = []; 
-let diamonds1 = [];
-let boxes1 = [];
+let traps = []; 
+traps[levelIndex] = [];
+let diamonds = [];
+diamonds[levelIndex] = [];
+let boxes = [];
+boxes[levelIndex] = [];
+
 
 // 解析 JSON 地图
 function ParseJSON(jsonData) {
@@ -108,7 +112,7 @@ function getTraps(){
         let x = trapsLayer.objects[i].x;
         let y = trapsLayer.objects[i].y - tileSize;
         let imgIndex = trapsLayer.objects[i].gid;
-        traps1[i] = new OneTrap(x,y,imgIndex,levelIndex);
+        traps[levelIndex][i] = new OneTrap(x,y,imgIndex,levelIndex);
     }
 }
 
@@ -124,13 +128,13 @@ function getInteract(){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            diamonds1[diamondNum++] = new OneDiamond(x,y,imgIndex,levelIndex);
+            diamonds[levelIndex][diamondNum++] = new OneDiamond(x,y,imgIndex,levelIndex);
         }
         else if(interType === "box"){
             let x = Layer.objects[i].x;
             let y = Layer.objects[i].y - tileSize;
             let imgIndex = Layer.objects[i].gid;
-            boxes1[boxNum++] = new OneBox(x,y,imgIndex,levelIndex);
+            boxes[levelIndex][boxNum++] = new OneBox(x,y,imgIndex,levelIndex);
         }
         else if(interType === "flag"){
             let x = Layer.objects[i].x;
