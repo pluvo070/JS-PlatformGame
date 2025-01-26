@@ -17,6 +17,8 @@ class Player {
         this.gravity = 0.5; // 重力
         this.jumpStrength = -10; // 跳跃初速度
         this.onGround = false; // 是否在地面上
+
+        this.diamondNum = 0;
     }
 
     // 移动 + 限制玩家的位置
@@ -62,9 +64,10 @@ class Player {
             }
             this.velocityY = 0; // 停止竖直速度
         }
+
+        this.getDiamond();
    }
 
-    
   
     // 加载玩家图片到界面
     show() {
@@ -88,6 +91,19 @@ class Player {
 
         // 碰撞检测：如果这个格子是墙体（非 0），返回 true
         return coll1.data[tileIndex] !== 0;
+    }
+
+
+    // 计算是否碰到钻石
+    getDiamond(){
+        // 此处以level1的钻石为例,后续还需要更改
+        for(let i=0; i < diamonds1.length; i++){
+            if(diamonds1[i].visible && diamonds1[i].isNear(this.x,this.y)){
+                diamonds1[i].visible = false;
+                this.diamondNum ++;
+                console.log("人物钻石数量:", this.diamondNum);
+            }
+        }
     }
 
 }

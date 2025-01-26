@@ -28,6 +28,7 @@ function ParseJSON(jsonData) {
     getEnemies();
     getTraps();
     getInteract();
+    //console.log(diamonds1);
 }
 
 // 使用 $.getJSON 加载 JSON 并赋值给 gameData
