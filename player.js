@@ -27,7 +27,7 @@ class Player {
             /* 帧动画这里以第一关为例, 选择索引是89/90切换
                由于tiled里面设置的是80, 因此这里+9 */
 
-        // 无敌状态参数(被攻击后进入120帧无敌)
+        // 无敌状态参数(被攻击后进入100帧无敌)
         this.visible = true; // 显示人物
         this.invincible = false; // 无敌状态
         this.invincibleTimer = 0; // 计时器
@@ -41,6 +41,7 @@ class Player {
         let moving = false; // 标记是否在移动
 
         this.beAttacked();
+        this.beTrapped();
 
         // 判断人物是否入水
         if(this.inWater(this.x, this.y)){
@@ -189,6 +190,20 @@ class Player {
     beAttacked(){
         for(let i = 0; i < enemies[selectedLevel].length; i++){
             if(enemies[selectedLevel][i].visible && enemies[selectedLevel][i].isNear(this.x,this.y)){
+                if(!this.invincible){ // 不在无敌状态时: hp--, 启动无敌状态
+                    assets.beAttacked.play();
+                    this.hp --;
+                    this.invincible = true; 
+                    this.invincibleTimer = 0; // 重置计时器
+                }
+            }
+        }
+    }
+
+    // 人物被敌人攻击(碰到敌人)
+    beTrapped(){
+        for(let i = 0; i < traps[selectedLevel].length; i++){
+            if(traps[selectedLevel][i].isNear(this.x,this.y)){
                 if(!this.invincible){ // 不在无敌状态时: hp--, 启动无敌状态
                     assets.beAttacked.play();
                     this.hp --;
