@@ -1,9 +1,9 @@
 // 使用到的类需要导包
-const { Player } = require('../player.js');
-const { OneEnemy } = require('../oneEnemy.js');
+const { Player } = require('../classes/player.js');
+const { OneEnemy } = require('../classes/oneEnemy.js');
 
 test("Player loses 1 HP when colliding with enemy", () => {
-    let tileSize = 1;
+    //let tileSize = 1;
     let player = new Player(100, 100, 0, 5, 0, 0);
     let enemies = [];
     enemies[0] = [];
