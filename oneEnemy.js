@@ -1,6 +1,6 @@
 // 单个敌人
 
-export class OneEnemy{
+class OneEnemy{
 
     // 构造函数
     constructor(x, y, speed, hp, range, imgIndex, levelIndex) {
@@ -104,3 +104,6 @@ export class OneEnemy{
 
 }
 
+
+module.exports = { OneEnemy };
+exports.OneEnemy = OneEnemy;

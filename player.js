@@ -3,7 +3,7 @@
 // 所有物品的位置计算都使用世界坐标系
 // 所有物品都在绘制时添加偏移量即可
 
-export class Player {
+class Player {
 
     // 构造函数
     constructor(x, y, speed, hp, imgIndex, levelIndex) {
@@ -242,3 +242,5 @@ export class Player {
 
 
 }
+module.exports = { Player };
+exports.Player = Player; 
