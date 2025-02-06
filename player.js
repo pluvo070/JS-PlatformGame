@@ -3,7 +3,7 @@
 // 所有物品的位置计算都使用世界坐标系
 // 所有物品都在绘制时添加偏移量即可
 
-class Player {
+export class Player {
 
     // 构造函数
     constructor(x, y, speed, hp, imgIndex, levelIndex) {
@@ -202,7 +202,8 @@ class Player {
         }
     }
 
-    // 人物被敌人攻击(碰到敌人)
+    // 遍历当前关卡的敌人数组, 判断是否有敌人在玩家附近
+    // 在附近则人物被敌人攻击, hp--并进入无敌状态
     beAttacked(){
         for(let i = 0; i < enemies[selectedLevel].length; i++){
             if(enemies[selectedLevel][i].visible && enemies[selectedLevel][i].isNear(this.x,this.y)){
@@ -241,4 +242,3 @@ class Player {
 
 
 }
-  
