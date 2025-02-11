@@ -185,7 +185,7 @@ class Player {
                 assets.getDiamondSound.play();
                 diamonds[selectedLevel][i].visible = false;
                 this.diamondNum ++;
-                console.log("人物钻石数量:", this.diamondNum);
+                //console.log("人物钻石数量:", this.diamondNum);
             }
         }
     }
@@ -217,7 +217,7 @@ class Player {
         }
     }
 
-    // 人物被敌人攻击(碰到敌人)
+    // 人物碰到陷阱
     beTrapped(){
         for(let i = 0; i < traps[selectedLevel].length; i++){
             if(traps[selectedLevel][i].isNear(this.x,this.y)){
