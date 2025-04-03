@@ -86,6 +86,15 @@ function drawLevelSelectScreen() {
     stroke(255,255,255,textAlpha);
     text(levels[i], x + size/2, y + size/2); // 画按钮上的文字
   }
+
+  // 如果不是第一关，显示 "Coming Soon"
+  if (selectedLevel > 0) {
+    fill(0, 0, 0, textAlpha);
+    strokeWeight(3);
+    stroke(255, 255, 255, textAlpha);
+    textSize(40);
+    text("Coming Soon", width / 2, height / 2 + 100);
+  }
 }
 
 // 游戏界面
@@ -216,9 +225,11 @@ function keyPressed() {
     } else if (keyCode === RIGHT_ARROW) {
       selectedLevel = min(levels.length - 1, selectedLevel + 1);
     } else if (keyCode === 32) {  // 空格键进入关卡
-      gameState = "playing";
-      assets.clicked.play();
-      transition();
+      if (selectedLevel === 0) { // 目前只允许进入第一关
+        gameState = "playing";
+        assets.clicked.play();
+        transition();
+      }
     }
   } else if (gameState === "gameOver" && key === 'r') {
     gameState = "start";
